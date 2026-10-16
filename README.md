@@ -1,50 +1,28 @@
-# 🌌 SBC Heaven (Single Board Computer Resource Repository)
+# 🌌 The SBC Heaven (Single Board Computer Resource Hub)
 
-Welcome to **SBC Heaven**—the ultimate sanctuary for Single Board Computer enthusiasts, developers, and embedded Linux tinkerers. 
+Welcome to **The SBC Heaven**, a centralized, community-driven repository designed to be the ultimate sanctuary for Single Board Computer (SBC) assets. Finding production-ready system images, Device Tree Blobs/Overlays (DTBs/DTBOs), and verified out-of-tree hardware drivers shouldn't be a struggle.
 
-The primary vision of this repository is to serve as a comprehensive, well-structured, and reliable hub where you can find **everything you need for your SBCs in one single place**. No more hunting down broken links or hunting through obscure forums; here, everything is organized neatly by **SoC Family and Chipset**.
-
----
-
-## 🚀 What You Will Find Here
-
-Everything in this repository is categorized by **SoC / Chip Family** (e.g., `rk356x`, `rk3588`, `px30`, etc.) to ensure seamless navigation:
-
-* 📀 **Ready-to-Use OS Images**: Pre-built, shrinked, and optimized images (Minimal, Proxmox) ready to flash.
-* 🌳 **Device Tree Blobs & Overlays (.dtb / .dtbo)**: Cleaned and tested Device Tree sources and compiled overlays.
-* ⚙️ **Drivers & DKMS Modules**: Pre-compiled kernel modules, out-of-tree drivers, and hardware acceleration libraries.
-* 🔧 **Kernel Configurations & Patches**: Tested `.config` files and custom patchsets.
+This repository hosts clean, tested, and optimized resources categorized logically by **SoC Family / Vendor** to streamline development, testing, and deployment.
 
 ---
 
-## 📁 Repository Structure
+## 📂 Repository Structure
+
+The repository is organized by silicon vendor (e.g., `rockchip`, `allwinner`), with dedicated subdirectories for `drivers`, `dtb`, and compressed `images` structured by specific SoC sub-families (`rk356x`, `h61x`, etc.):
 
 ```text
 .
-├── rk356x/
-│   ├── images/       # Flashing-ready OS images (.img / .img.xz)
-│   ├── dtb/          # Device Tree Blobs and Overlays (.dtbo)
-│   └── drivers/      # DKMS modules and runtime drivers (e.g., RKNN)
-├── rk3588/
-│   ├── images/
-│   ├── dtb/
-│   └── drivers/
-└── README.md
-```
-
----
-
-## 🌟 Key Features
-
-* **Shrinked & Optimized:** Images are processed with `pishrink` to guarantee fast downloads and automated partition expansion on first boot.
-* **Bleeding-Edge Kernel Support:** Track and deploy custom build setups featuring up-to-date Linux kernels.
-* **Hardware Acceleration First:** Ready-to-use configurations for hardware NPUs, GPUs, and specialized hardware interfaces.
-
----
-
-## 🤝 Contributing
-
-Contributions are welcome! If you have optimized images, working DTB overlays, or driver patches for any SoC family, feel free to open a Pull Request.
-
----
-*Maintained with passion for low-level board bring-up and embedded system tweaking.*
+├── allwinner
+│   ├── drivers
+│   ├── dtb
+│   └── images
+│       └── h61x
+│           └── H61X_Debian13_minimal_kernel7.0_20260430.img
+└── rockchip
+    ├── drivers
+    ├── dtb
+    └── images
+        └── rk356x
+            ├── rk356x_minimal_k7.2.8.img.xz
+            ├── rk356x_minimal_k7.3.0-rc5.img.xz
+            └── rk356x_proxmox_9_2_20_k7.2.8.img.xz
