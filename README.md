@@ -10,10 +10,10 @@ The primary vision of this repository is to serve as a comprehensive, well-struc
 
 Everything in this repository is categorized by **SoC / Chip Family** (e.g., `rk356x`, `rk3588`, `px30`, etc.) to ensure seamless navigation:
 
-* 📀 **Ready-to-Use OS Images**: Pre-built, shrinked, and optimized images (Minimal, Proxmox, bleeding-edge kernels like `7.3.0-rc5`, etc.) ready to flash.
-* 🌳 **Device Tree Blobs & Overlays (.dtb / .dtbo)**: Cleaned and tested Device Tree sources and compiled overlays (e.g., NPU overlays, custom pinouts).
-* ⚙️ **Drivers & DKMS Modules**: Pre-compiled kernel modules, out-of-tree drivers, and hardware acceleration libraries (e.g., RKNN RT, Mali GPU drivers).
-* 🔧 **Kernel Configurations & Patches**: Tested `.config` files and custom patchsets for edge and bleeding-edge kernel trees.
+* 📀 **Ready-to-Use OS Images**: Pre-built, shrinked, and optimized images (Minimal, Proxmox) ready to flash.
+* 🌳 **Device Tree Blobs & Overlays (.dtb / .dtbo)**: Cleaned and tested Device Tree sources and compiled overlays.
+* ⚙️ **Drivers & DKMS Modules**: Pre-compiled kernel modules, out-of-tree drivers, and hardware acceleration libraries.
+* 🔧 **Kernel Configurations & Patches**: Tested `.config` files and custom patchsets.
 
 ---
 
