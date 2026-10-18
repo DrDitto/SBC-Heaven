@@ -14,6 +14,9 @@ This repository hosts clean, tested, and optimized resources categorized logical
 | **Direct SPI Flash (`&sfc`) Control** | ✅ Supported | ✅ Supported |
 | **`PREEMPT_RT` Determinism** | ✅ Validated | ✅ Validated |
 
+## Our Goal!
+
+By strictly standardizing on **Rockchip** and **Allwinner**, the repository enforces a lean, transparent Hardware Abstraction Layer (HAL) for the Meta Distribution. This design guarantees total architectural control from the low-level bootloader to the userspace runtime environment.
 
 ## 📂 Repository Structure
 
@@ -35,4 +38,5 @@ The repository is organized by silicon vendor (e.g., `rockchip`, `allwinner`), w
             ├── rk356x_minimal_k7.2.8.img.xz
             ├── rk356x_minimal_k7.3.0-rc5.img.xz
             └── rk356x_proxmox_9_2_20_k7.2.8.img.xz
-guarantees total architectural control from the low-level bootloader to the userspace runtime environment.
+
+
