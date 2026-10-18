@@ -1,1 +1,53 @@
+# Approved SoC Vendors & Architectural Rationale
 
+This document details the official hardware selection policy for **SBC-Heaven** and the core architecture of the Meta Distribution. It defines the technical criteria behind selecting **Rockchip** and *Allwinner* as the exclusive silicon vendors supported by this ecosystem.
+
+## 1. Selection Philosophy & Criteria
+
+In industrial edge devices and mission-critical embedded systems, long-term stability, deterministic real-time execution (`PREEMPT_RT`), and total control over hardware registers are non-negotiable.
+
+Supporting an overly broad spectrum of vendors introduces software bloat, forced reliance on unmaintained vendor BSPs, and opaque binary blobs. To maintain an ultra-resilient, `systemd`-free ecosystem, hardware targets are **strictly limited** to SoC families that satisfy four mandatory criteria:
+
+1. **Native Mainline Linux Support (Kernel 7.x+)**: Ability to boot clean upstream kernels without downstream vendor patches or proprietary hooks.
+2. **Open-Source Graphics Stack**: Full compatibility with Mesa userspace drivers (**Panfrost**, **Panthor**, and **Lima**).
+3. **Transparent Device Tree Architecture**: Complete flexibility for runtime Device Tree Overlay (`.dtbo`) injection via U-Boot or UEFI/EDK2.
+4. **Direct Register/Peripheral Control**: Unrestricted register-level access to SPI, I2C, PCIe, and dedicated SPI Flash Controllers (`&sfc`).
+
+---
+
+## 2. Approved SoC Vendors
+
+### A. Rockchip (e.g., RK3566 / RK3568 / RK3588)
+
+Rockchip represents the primary performance tier for edge computing and local AI inference within the Meta Distro architecture.
+
+* **Upstream Mainline Maturity**: Core drivers—including power domain controllers, clock trees, and memory buses—are natively integrated into the mainline Linux kernel.
+* **Full NPU Acceleration (`rknpu`)**: Rockchip's NPU hardware blocks can be fully unlocked via universal Device Tree overlays (`.dtbo`). This allows fine-grained frequency scaling (OPP tables up to 800 MHz), custom voltage regulator bindings, and dedicated IOMMU mapping without binary black boxes in kernel space.
+* **SPI Flash Controller (`&sfc`) Direct Access**: Native support for high-speed (50 MHz+) SPI NAND storage (such as WSON8 128 MB chips). This provides a resilient, non-removable boot medium housing `/boot` and U-Boot binaries.
+* **Open-Source GPU Acceleration**: Complete support for Arm Mali GPUs via community-driven **Panfrost** (mid-range) and **Panthor** (newer Valhall/5th Gen) drivers.
+
+### B. Allwinner (e.g., H616 / H618 / A64)
+
+Allwinner serves as the low-power, cost-effective foundation for headless gateways, industrial IO controllers, and lightweight HMI terminals.
+
+* **Proven Open-Source Ecosystem (sunxi)**: Historically strong community backing ensures simplified register maps, straightforward U-Boot integration, and predictable hardware behavior.
+* **Mesa Lima Driver**: Native, highly stable support through the open-source **Lima** driver for legacy/lightweight Mali GPUs, ensuring low-overhead Wayland rendering via `seatd`.
+* **Deterministic Execution**: Excellent compatibility with `PREEMPT_RT` kernel patches, delivering low interrupt latency for real-time control applications.
+
+---
+
+## 3. Technical Compliance Matrix
+
+| Metric / Requirement | Rockchip (RK356x / RK3588) | Allwinner (H61x / A64) |
+| :--- | :--- | :--- |
+| **Mainline Linux Support (7.x+)** | ✅ Native | ✅ Native |
+| **Open-Source Graphics Drivers** | ✅ Panfrost / Panthor | ✅ Lima |
+| **Dynamic DTBO Overlay Support** | ✅ U-Boot / UEFI | ✅ U-Boot / UEFI |
+| **Direct SPI Flash (`&sfc`) Control** | ✅ Supported | ✅ Supported |
+| **`PREEMPT_RT` Determinism** | ✅ Validated | ✅ Validated |
+
+---
+
+## 4. Conclusion
+
+By strictly standardizing on **Rockchip** and **Allwinner**, the Meta Distribution enforces a lean, transparent Hardware Abstraction Layer (HAL). This design guarantees total architectural control from the low-level bootloader to the userspace runtime environment.
