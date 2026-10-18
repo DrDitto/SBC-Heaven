@@ -4,7 +4,16 @@ Welcome to **The SBC Heaven**, a centralized, community-driven repository design
 
 This repository hosts clean, tested, and optimized resources categorized logically by **SoC Family / Vendor** to streamline development, testing, and deployment.
 
----
+## Technical Compliance Matrix
+
+| Metric / Requirement | Rockchip (RK356x / RK3588) | Allwinner (H61x / A64) |
+| :--- | :--- | :--- |
+| **Mainline Linux Support (7.x+)** | ✅ Native | ✅ Native |
+| **Open-Source Graphics Drivers** | ✅ Panfrost / Panthor | ✅ Lima |
+| **Dynamic DTBO Overlay Support** | ✅ U-Boot / UEFI | ✅ U-Boot / UEFI |
+| **Direct SPI Flash (`&sfc`) Control** | ✅ Supported | ✅ Supported |
+| **`PREEMPT_RT` Determinism** | ✅ Validated | ✅ Validated |
+
 
 ## 📂 Repository Structure
 
@@ -26,18 +35,4 @@ The repository is organized by silicon vendor (e.g., `rockchip`, `allwinner`), w
             ├── rk356x_minimal_k7.2.8.img.xz
             ├── rk356x_minimal_k7.3.0-rc5.img.xz
             └── rk356x_proxmox_9_2_20_k7.2.8.img.xz
-## Technical Compliance Matrix
-
-| Metric / Requirement | Rockchip (RK356x / RK3588) | Allwinner (H61x / A64) |
-| :--- | :--- | :--- |
-| **Mainline Linux Support (7.x+)** | ✅ Native | ✅ Native |
-| **Open-Source Graphics Drivers** | ✅ Panfrost / Panthor | ✅ Lima |
-| **Dynamic DTBO Overlay Support** | ✅ U-Boot / UEFI | ✅ U-Boot / UEFI |
-| **Direct SPI Flash (`&sfc`) Control** | ✅ Supported | ✅ Supported |
-| **`PREEMPT_RT` Determinism** | ✅ Validated | ✅ Validated |
-
----
-
-## Conclusion
-
-By strictly standardizing on **Rockchip** and **Allwinner**, the Meta Distribution enforces a lean, transparent Hardware Abstraction Layer (HAL). This design guarantees total architectural control from the low-level bootloader to the userspace runtime environment.
+guarantees total architectural control from the low-level bootloader to the userspace runtime environment.
